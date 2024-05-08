@@ -16,7 +16,7 @@ conda env create -f environment.yaml
 conda activate a2s2024
 ```
 
-2. Install Fluidsynth and FFmpeg, which is used to synthesize the audios:
+2. Install Fluidsynth and FFmpeg, which are used to synthesize the audios:
 ```bash
 sudo apt-get install fluidsynth ffmpeg
 ```
@@ -49,7 +49,7 @@ sudo make install
 cd ../..
 ```
 
-If you do not install Verovio, you need to use the -r option to set the resource directory `./verovio/data` in `data_processing/render.py` where the command line is needed. You may refer to the [guide](https://book.verovio.org/installing-or-building-from-sources/command-line.html#building-on-macos-or-linux) for more details.
+If you do not install Verovio, you need to use the `-r` option to set the resource directory `./verovio/data` in `data_processing/render.py` where the command line is needed. You may refer to the [guide](https://book.verovio.org/installing-or-building-from-sources/command-line.html#building-on-macos-or-linux) for more details.
 
 5. Clone VirtuosoNet
 
