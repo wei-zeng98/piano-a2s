@@ -1,3 +1,11 @@
+# End-to-End Real-World Polyphonic Piano Audio-to-Score Transcription with Hierarchical Decoding
+<div align=center>
+<img src="images/model_architecture.svg" width="750px">
+</div>
+<div align=center>
+<img src="images/training_scheme.svg" width="750px">
+</div>
+
 ## Installation
 
 1. Clone this repository and create a conda environment with the provided dependencies:
