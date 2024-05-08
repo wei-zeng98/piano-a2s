@@ -30,10 +30,10 @@ a) Build from source:
 ```bash
 git clone https://github.com/mangelroman/humextra.git
 cd humextra
-make library extractx hum2mid hum2xml mid2hum thrux tiefix transpose
+make library extractx hum2xml tiefix transpose
 ```
 
-b) Directly download the compiled executable binary files from [the Humdrum website](https://extras.humdrum.org/).
+b) Directly download the compiled executable binary files from [the Humdrum website](https://extras.humdrum.org/): [extractx](https://extras.humdrum.org/man/extractx/), [hum2xml](https://extras.humdrum.org/man/hum2xml/), [tiefix](https://extras.humdrum.org/man/tiefix/), [transpose](https://extras.humdrum.org/man/transpose/)
 
 Once have builded/downloaded the Humdrum extra tools, add the folder containing the binary files to `$PATH`.
 
