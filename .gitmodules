@@ -1,0 +1,3 @@
+[submodule "virtuosoNet"]
+	path = virtuosoNet
+	url = https://github.com/jdasam/virtuosoNet.git

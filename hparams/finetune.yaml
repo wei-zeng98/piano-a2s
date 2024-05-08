@@ -1,0 +1,118 @@
+# Seed needs to be set at top of yaml, before objects with parameters
+# are instantiated
+seed: 1234
+__set_seed_torch: !apply:torch.manual_seed [!ref <seed>]
+__set_seed_numpy: !apply:numpy.random.seed [!ref <seed>]
+midi_syn: score # ['epr', 'score']
+version: !ref finetune.<midi_syn>
+asap_folder: !PLACEHOLDER # Path to the asap_folder
+workspace: !PLACEHOLDER # Path to the workspace
+output_folder: !ref <workspace>/<seed>/<version>
+pretrained_output_folder: !ref <workspace>/<seed>/pretrain.<midi_syn>
+feature_folder: !ref <workspace>/feature.asap
+save_folder: !ref <output_folder>/save
+train_log: !ref <output_folder>/train_log.txt
+
+sample_rate: 16000
+max_length: (398, 189)
+max_bars: 5
+num_time_sig: 7
+num_keys: 14
+max_duration: 12
+frames_per_second: 100
+begin_note: 21     # MIDI note of A0, the lowest note of a piano.
+classes_num: 88    # Number of notes of piano
+max_frame_num: !ref <max_duration> * <frames_per_second> + 1
+hop_length: 160
+bins_per_octave: 60
+n_octaves: 8
+gamma: 20
+
+VQT_params:
+  sample_rate: !ref <sample_rate>
+  hop_length: !ref <hop_length>
+  bins_per_octave: !ref <bins_per_octave>
+  n_octaves: !ref <n_octaves>
+  gamma: !ref <gamma>
+
+# Training parameters
+number_of_epochs: 20
+batch_size: 4
+lr: 1
+teacher_forcing_ratio: 0.6
+
+opt_class: !name:torch.optim.Adadelta
+  lr: !ref <lr>
+  rho: 0.95
+  eps: 1.e-8
+
+loss_time_sig: !new:torch.nn.NLLLoss
+
+loss_key: !new:torch.nn.NLLLoss
+
+loss_score: !new:torch.nn.NLLLoss
+  ignore_index: 147
+
+# Dataloader options
+train_dataloader_opts:
+  batch_size: !ref <batch_size>
+  shuffle: True
+
+valid_dataloader_opts:
+  batch_size: !ref <batch_size>
+  shuffle: False
+
+test_dataloader_opts:
+  batch_size: !ref <batch_size>
+  shuffle: False
+
+# Model parameters
+conv_feature_size: 256
+hidden_size: 256
+note_emb_size: 16
+staff_emb_size: 32
+time_sig_emb_size: 5
+key_emb_size: 8
+
+epoch_counter: !new:speechbrain.utils.epoch_loop.EpochCounter
+  limit: !ref <number_of_epochs>
+
+normalize: !new:speechbrain.processing.features.InputNormalization
+  norm_type: global
+
+# Models
+transcription: !new:models.ScoreTranscription
+  in_channels: 1
+  freq_bins: !ref <bins_per_octave> * <n_octaves>
+  conv_feature_size: !ref <conv_feature_size>
+  hidden_size: !ref <hidden_size>
+  max_bars: !ref <max_bars>
+  num_time_sig: !ref <num_time_sig>
+  num_keys: !ref <num_keys>
+  max_length: !ref <max_length>
+  note_emb_size: !ref <note_emb_size>
+  staff_emb_size: !ref <staff_emb_size>
+  time_sig_emb_size: !ref <time_sig_emb_size>
+  key_emb_size: !ref <key_emb_size>
+
+modules:
+  transcription: !ref <transcription>
+
+model: !new:torch.nn.ModuleList
+   - [!ref <transcription>]
+
+lr_annealing: !new:speechbrain.nnet.schedulers.NewBobScheduler
+  initial_value: !ref <lr>
+  improvement_threshold: 0.0025
+  annealing_factor: 0.8
+  patient: 0
+
+checkpointer: !new:speechbrain.utils.checkpoints.Checkpointer
+  checkpoints_dir: !ref <save_folder>
+  recoverables:
+    model: !ref <model>
+    scheduler: !ref <lr_annealing>
+    normalizer: !ref <normalize>
+
+train_logger: !new:speechbrain.utils.train_logger.FileTrainLogger
+   save_file: !ref <train_log>

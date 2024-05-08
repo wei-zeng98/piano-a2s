@@ -1,0 +1,15 @@
+name
+Bach#Prelude#bwv_862
+Bach#Prelude#bwv_884
+Bach#Prelude#bwv_892
+Bach#Prelude#bwv_893
+Beethoven#Piano_Sonatas#3-1
+Beethoven#Piano_Sonatas#9-3
+Beethoven#Piano_Sonatas#11-1
+Beethoven#Piano_Sonatas#18-1
+Beethoven#Piano_Sonatas#21-3
+Chopin#Etudes_op_10#8
+Chopin#Etudes_op_10#12
+Chopin#Etudes_op_25#11
+Chopin#Scherzos#31
+Schubert#Wanderer_fantasie
