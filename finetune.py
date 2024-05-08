@@ -251,6 +251,12 @@ if __name__ == "__main__":
     # Copy the pretrained model to the output folder
     os.system(f"cp -r {pretrained_output_folder}/save {output_folder}")
 
+    # Change the WER in log file so that the new WER can be recorded
+    for folder in os.listdir(os.path.join(output_folder, 'save')):
+        ckpt = load(os.path.join(output_folder, 'save', folder, 'CKPT.yaml'))
+        ckpt["WER"] = 100 # Set to a large number so that the new lower WER can be recorded
+        save(ckpt, os.path.join(output_folder, 'save', folder, 'CKPT.yaml'))
+
     # Dataset prep
     train_dataset = ASAPDataset(hparams, 'train', run_opts["device"])
     valid_dataset = ASAPDataset(hparams, 'test', run_opts["device"])

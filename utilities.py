@@ -10,6 +10,7 @@ import csv
 from mido import MidiFile
 from hyperpyyaml import load_hyperpyyaml
 from data_processing.humdrum import LabelsMultiple
+import yaml
 
 labels = LabelsMultiple(extended=True)
 durations = ["1","1.","2","2.","4","4.","8","8.","16","16.",
@@ -218,6 +219,11 @@ def save(data, path):
     elif path.endswith('.pkl'):
         with open(path, 'wb') as fout:
             pickle.dump(data, fout)
+    
+    # .yaml
+    elif path.endswith('.yaml'):
+        with open(path, 'w') as fout:
+            yaml.dump(data, fout)
 
 def set_seed(seed):
     torch.manual_seed(seed)
