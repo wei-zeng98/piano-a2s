@@ -3,7 +3,7 @@
 seed: 1234
 __set_seed_torch: !apply:torch.manual_seed [!ref <seed>]
 __set_seed_numpy: !apply:numpy.random.seed [!ref <seed>]
-midi_syn: score # ['epr', 'score']
+midi_syn: epr # ['epr', 'score']
 version: !ref finetune.<midi_syn>
 asap_folder: !PLACEHOLDER # Path to the asap_folder
 workspace: !PLACEHOLDER # Path to the workspace

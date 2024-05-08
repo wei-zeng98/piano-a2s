@@ -21,7 +21,7 @@ conda activate a2s2024
 sudo apt-get install fluidsynth ffmpeg
 ```
 
-3. Get Humdrum extra tools and add to `$PATH`.
+3. Get Humdrum extra tools.
 
 You can choose either a) or b) to get the Humdrum extra tools.
 
@@ -31,6 +31,7 @@ a) Build from source:
 git clone https://github.com/mangelroman/humextra.git
 cd humextra
 make library extractx hum2xml tiefix transpose
+cd ..
 ```
 
 b) Directly download the compiled executable binary files from [the Humdrum website](https://extras.humdrum.org/): [extractx](https://extras.humdrum.org/man/extractx/), [hum2xml](https://extras.humdrum.org/man/hum2xml/), [tiefix](https://extras.humdrum.org/man/tiefix/), [transpose](https://extras.humdrum.org/man/transpose/)
@@ -45,9 +46,10 @@ cd verovio/tools
 cmake ../cmake
 make
 sudo make install
+cd ../..
 ```
 
-You may refer to the [guide](https://book.verovio.org/installing-or-building-from-sources/command-line.html#building-on-macos-or-linux) for more details.
+If you do not install Verovio, you need to use the -r option to set the resource directory `./verovio/data` in `data_processing/render.py` where the command line is needed. You may refer to the [guide](https://book.verovio.org/installing-or-building-from-sources/command-line.html#building-on-macos-or-linux) for more details.
 
 5. Clone VirtuosoNet
 

@@ -449,8 +449,14 @@ def xml_to_midi(versions, feature_folder, midi_syn='epr'):
                 except Exception as e:
                     print(f'Error: {xml_path}')
                     continue
+    
+    if midi_syn == 'epr':
+        # Move back to the parent directory
+        os.chdir('..')
+    return
 
 def convert_xml_to_kern(xml_folder='data_processing/xml'):
+    print('Converting MuseSyn xml files to kern files...')
     xml_files = os.listdir(xml_folder)
     for xml_file in tqdm(xml_files):
         xml_path = os.path.join(xml_folder, xml_file)
@@ -459,6 +465,7 @@ def convert_xml_to_kern(xml_folder='data_processing/xml'):
 
 def preprocess_kern():
     print('Preprocessing kern files...')
+    mkdirs('data_processing/temp')
     kern_folder = 'data_processing/kern'
     kern_files = os.listdir(kern_folder)
     selected_chopin = set([row['name'] for i, row in pd.read_csv('data_processing/metadata/selected_chopin.txt').iterrows()])
@@ -564,24 +571,29 @@ if __name__ == '__main__':
     preprocess_kern()
 
     # Split scores into train, valid, test and cut into chunks
+    print('Splitting scores into train, valid, test and cutting into chunks...')
     partial_work = partial(split_datasets, feature_folder=feature_folder)
     with multiprocessing.Pool(processes=5) as pool:
         versions_list = [[0, 1], [2, 3], [4, 5], [6, 7], [8, 9]]
         pool.map(partial_work, versions_list)
 
     # Convert xml to midi
+    print('Converting xml to midi...')
     xml_to_midi(range(10), feature_folder=feature_folder, midi_syn=midi_syn)
 
     # Remove files with invalid key or time signature or length > 12s
+    print('Cleaning files...')
     clean_files(range(10), feature_folder=feature_folder)
 
     # Synthesize midi files
+    print('Synthesizing midi files...')
     partial_work = partial(render_all_midi, feature_folder=feature_folder, soundfont_folder=soundfont_folder)
     with multiprocessing.Pool(processes=5) as pool:
         versions_list = [[0, 1], [2, 3], [4, 5], [6, 7], [8, 9]]
         pool.map(partial_work, versions_list)
 
     # Prepare spectrograms
+    print('Preparing spectrograms...')
     partial_work = partial(prepare_spectrograms, feature_folder=feature_folder, hparams=load('hparams/pretrain.yaml'))
     with multiprocessing.Pool(processes=5) as pool:
         versions_list = [[0, 1], [2, 3], [4, 5], [6, 7], [8, 9]]
