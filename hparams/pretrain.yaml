@@ -6,7 +6,7 @@ __set_seed_numpy: !apply:numpy.random.seed [!ref <seed>]
 midi_syn: epr # ['epr', 'score']
 version: !ref pretrain.<midi_syn>
 workspace: !PLACEHOLDER # Path to the workspace
-soundfont_folder: /usr/share/sounds/sf2/ # Soundfont folder
+soundfont_folder: !PLACEHOLDER # Soundfont folder
 output_folder: !ref <workspace>/<seed>/<version>
 feature_folder: !ref <workspace>/feature.<midi_syn>
 save_folder: !ref <output_folder>/save

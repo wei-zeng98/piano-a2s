@@ -21,7 +21,11 @@ conda activate a2s2024
 sudo apt-get install fluidsynth ffmpeg
 ```
 
-3. Get Humdrum extra tools.
+3. Download piano soundfonts.
+
+Download [TimGM6mb.sf2](https://sourceforge.net/p/mscore/code/HEAD/tree/trunk/mscore/share/sound/TimGM6mb.sf2?format=raw), [FluidR3_GM.sf2](https://keymusician01.s3.amazonaws.com/FluidR3_GM.zip), [UprightPianoKW-20220221.sf2](https://freepats.zenvoid.org/Piano/UprightPianoKW/UprightPianoKW-SF2-20220221.7z), [SalamanderGrandPiano-V3+20200602.sf2](https://freepats.zenvoid.org/Piano/SalamanderGrandPiano/SalamanderGrandPiano-SF2-V3+20200602.tar.xz), [YDP-GrandPiano-20160804.sf2](https://freepats.zenvoid.org/Piano/YDP-GrandPiano/YDP-GrandPiano-SF2-20160804.tar.bz2). Extract the `.sf2` files and move them to your soundfont folder (e.g. `/usr/share/sounds/sf2/`), and specify `soundfont_folder` in `hparams/pretrain.yaml` to the folder path.
+
+4. Get Humdrum extra tools.
 
 You can choose either a) or b) to get the Humdrum extra tools.
 
@@ -38,7 +42,7 @@ b) Directly download the compiled executable binary files from [the Humdrum webs
 
 Once have builded/downloaded the Humdrum extra tools, add the folder containing the binary files to `$PATH`.
 
-4. Install Verovio:
+5. Install Verovio:
 
 ```bash
 git clone https://github.com/rism-digital/verovio.git
@@ -51,9 +55,9 @@ cd ../..
 
 If you do not install Verovio, you need to use the `-r` option to set the resource directory `./verovio/data` in `data_processing/render.py` where the command line is needed. You may refer to the [guide](https://book.verovio.org/installing-or-building-from-sources/command-line.html#building-on-macos-or-linux) for more details.
 
-5. Clone VirtuosoNet
+6. Clone VirtuosoNet
 
-This step should already be done in 1 as specified by `--recursive`. However, you will probably encounter the error: `xml.etree.ElementTree.Element` object has no attribute `getchildren` when using VirtuosoNet. This is because in Python 3.9, the method `xml.etree.ElementTree.Element.getchildren` does not work anymore. You may refer to [this issue](https://github.com/jdasam/virtuosoNet/issues/14/) to solve the problem.
+This step should already be done in Step 1 as specified by `--recursive`. However, you will probably encounter the error: `xml.etree.ElementTree.Element` object has no attribute `getchildren` when using VirtuosoNet. This is because in Python 3.9, the method `xml.etree.ElementTree.Element.getchildren` does not work anymore. You may refer to [this issue](https://github.com/jdasam/virtuosoNet/issues/14/) to solve the problem.
 
 ## Preparing Datasets
 
