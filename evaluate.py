@@ -7,12 +7,39 @@ from hyperpyyaml import load_hyperpyyaml
 from pyMV2H.converter.midi_converter import MidiConverter as Converter
 from pyMV2H.utils.align_files import align_files
 from pyMV2H.utils.music import Music
-from func_timeout import func_timeout, FunctionTimedOut
+import multiprocessing
+
+def get_mv2h(mv2h_dict, target_align_file, pred_align_file):
+    _, mv2h = align_files(Music.from_file(target_align_file),
+                          Music.from_file(pred_align_file))
+    mv2h_dict['Multi-pitch'] = mv2h.multi_pitch
+    mv2h_dict['Voice'] = mv2h.voice
+    mv2h_dict['Meter'] = mv2h.meter
+    mv2h_dict['Value'] = mv2h.note_value
+    mv2h_dict['Harmony'] = mv2h.harmony
+    mv2h_dict['MV2H'] = mv2h.mv2h
+
+def get_mv2h_with_timeout(timeout, target_align_file, pred_align_file):
+    with multiprocessing.Manager() as manager:
+        return_dict = manager.dict()
+        p = multiprocessing.Process(target=get_mv2h, 
+                                    args=(return_dict, 
+                                          target_align_file, 
+                                          pred_align_file))
+        p.start()
+        p.join(timeout)
+        
+        if p.is_alive():
+            print("Timeout")
+            p.terminate()
+            p.join()
+
+        return dict(return_dict)
 
 def get_mv2h_from_test(output_folder, split):
     results_dir = f'{output_folder}/results'
     mkdirs(f'{results_dir}/mv2h')
-    for dir in ['scores', 'midi']:
+    for dir in ['scores', 'midi', 'align']:
         for sub_dir in ['pred', 'target']:
             mkdirs(f'{results_dir}/{dir}/{sub_dir}')
     
@@ -23,10 +50,11 @@ def get_mv2h_from_test(output_folder, split):
         target_xml_path = f'{results_dir}/scores/target/{id}_target.xml'
         pred_midi_path = f'{results_dir}/midi/pred/{id}_pred.mid'
         target_midi_path = f'{results_dir}/midi/target/{id}_target.mid'
+        pred_align_path = f'{results_dir}/align/pred/{id}_pred.txt'
+        target_align_path = f'{results_dir}/align/target/{id}_target.txt'
         mv2h_path = f'{results_dir}/mv2h/{id}_mv2h.json'
         if os.path.exists(mv2h_path): continue
         result = load(os.path.join(f'{results_dir}/{split}', result))
-        mv2h = {}
 
         # Convert xml to midi
         try:
@@ -41,31 +69,25 @@ def get_mv2h_from_test(output_folder, split):
             continue
         
         # Convert midi to txt
-        target_file, pred_file = 'temp/target.txt', 'temp/pred.txt'
-        converter = Converter(file=target_midi_path, output=target_file)
+        converter = Converter(file=target_midi_path, output=target_align_path)
         converter.convert_file()
-        converter = Converter(file=pred_midi_path, output=pred_file)
+        converter = Converter(file=pred_midi_path, output=pred_align_path)
         converter.convert_file()
 
         # Align and get mv2h
         try:
-            _, mv2h_metric = \
-                func_timeout(15, align_files, 
-                             args=(Music.from_file('temp/target.txt'), 
-                                   Music.from_file('temp/pred.txt')))
-            mv2h['Multi-pitch'] = mv2h_metric.multi_pitch
-            mv2h['Voice'] = mv2h_metric.voice
-            mv2h['Meter'] = mv2h_metric.meter
-            mv2h['Value'] = mv2h_metric.note_value
-            mv2h['Harmony'] = mv2h_metric.harmony
-            mv2h['MV2H'] = mv2h_metric.mv2h
-            save(mv2h, mv2h_path)
-        except FunctionTimedOut:
-            # Timeout
-            errors.append(id)
+            mv2h_dict = \
+                get_mv2h_with_timeout(15, 
+                                      target_align_path, 
+                                      pred_align_path)
+            if mv2h_dict is None or len(mv2h_dict) == 0:
+                errors.append(id)
+                continue
+            save(mv2h_dict, mv2h_path)
         except Exception as e:
             errors.append(id)
-        
+            continue
+
     error_path = f'{results_dir}/errors.txt'
     with open(error_path, 'w') as f:
         for error in errors:
