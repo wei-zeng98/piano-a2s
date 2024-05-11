@@ -1,6 +1,6 @@
 # End-to-End Real-World Polyphonic Piano Audio-to-Score Transcription with Hierarchical Decoding
 
-### [Paper]() | [Demo](https://wei-zeng98.github.io/piano-a2s/)
+### [Paper]() | [Demo](https://wei-zeng98.github.io/piano-a2s/) | [Pre-trained Models](https://drive.google.com/drive/folders/10Cmfzp5aCDnSMyMG_qMtDWjtFL8cjOqG?usp=sharing)
 <div align=center>
 <img src="images/model_architecture.svg" width="750px">
 </div>
