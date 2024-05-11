@@ -104,11 +104,13 @@ Piano audio-to-score transcription (A2S) is an important yet underexplored task 
 
 <table>
     <tr>
+        <th>No.</th>
         <th>Input Audio</th>
         <th>Target</th>
         <th>Prediction</th>
     </tr>
     <tr>
+        <th>1</th>
         <th><audio controls><source src="static/audio/pretrain/0/input.wav" type="audio/wav"></audio></th>
         <th><audio controls><source src="static/audio/pretrain/0/target.wav" type="audio/wav"></audio></th>
         <th><audio controls><source src="static/audio/pretrain/0/pred.wav" type="audio/wav"></audio></th>
@@ -139,11 +141,13 @@ Piano audio-to-score transcription (A2S) is an important yet underexplored task 
 
 <table>
     <tr>
+        <th>No.</th>
         <th>Input Audio</th>
         <th>Target</th>
         <th>Prediction</th>
     </tr>
     <tr>
+        <th>2</th>
         <th><audio controls><source src="static/audio/pretrain/1/input.wav" type="audio/wav"></audio></th>
         <th><audio controls><source src="static/audio/pretrain/1/target.wav" type="audio/wav"></audio></th>
         <th><audio controls><source src="static/audio/pretrain/1/pred.wav" type="audio/wav"></audio></th>
@@ -175,11 +179,13 @@ Piano audio-to-score transcription (A2S) is an important yet underexplored task 
 
 <table>
     <tr>
+        <th>No.</th>
         <th>Input Audio</th>
         <th>Target</th>
         <th>Prediction</th>
     </tr>
     <tr>
+        <th>3</th>
         <th><audio controls><source src="static/audio/pretrain/2/input.wav" type="audio/wav"></audio></th>
         <th><audio controls><source src="static/audio/pretrain/2/target.wav" type="audio/wav"></audio></th>
         <th><audio controls><source src="static/audio/pretrain/2/pred.wav" type="audio/wav"></audio></th>
@@ -211,11 +217,13 @@ Piano audio-to-score transcription (A2S) is an important yet underexplored task 
 
 <table>
     <tr>
+        <th>No.</th>
         <th>Input Audio</th>
         <th>Target</th>
         <th>Prediction</th>
     </tr>
     <tr>
+        <th>4</th>
         <th><audio controls><source src="static/audio/pretrain/3/input.wav" type="audio/wav"></audio></th>
         <th><audio controls><source src="static/audio/pretrain/3/target.wav" type="audio/wav"></audio></th>
         <th><audio controls><source src="static/audio/pretrain/3/pred.wav" type="audio/wav"></audio></th>
@@ -247,11 +255,13 @@ Piano audio-to-score transcription (A2S) is an important yet underexplored task 
 
 <table>
     <tr>
+        <th>No.</th>
         <th>Input Audio</th>
         <th>Target</th>
         <th>Prediction</th>
     </tr>
     <tr>
+        <th>5</th>
         <th><audio controls><source src="static/audio/pretrain/4/input.wav" type="audio/wav"></audio></th>
         <th><audio controls><source src="static/audio/pretrain/4/target.wav" type="audio/wav"></audio></th>
         <th><audio controls><source src="static/audio/pretrain/4/pred.wav" type="audio/wav"></audio></th>
@@ -285,11 +295,13 @@ Piano audio-to-score transcription (A2S) is an important yet underexplored task 
 
 <table>
     <tr>
+        <th>No.</th>
         <th>Input Audio</th>
         <th>Target</th>
         <th>Prediction</th>
     </tr>
     <tr>
+        <th>6</th>
         <th><audio controls><source src="static/audio/finetune/0/input.wav" type="audio/wav"></audio></th>
         <th><audio controls><source src="static/audio/finetune/0/target.wav" type="audio/wav"></audio></th>
         <th><audio controls><source src="static/audio/finetune/0/pred.wav" type="audio/wav"></audio></th>
@@ -320,11 +332,13 @@ Piano audio-to-score transcription (A2S) is an important yet underexplored task 
 
 <table>
     <tr>
+        <th>No.</th>
         <th>Input Audio</th>
         <th>Target</th>
         <th>Prediction</th>
     </tr>
     <tr>
+        <th>7</th>
         <th><audio controls><source src="static/audio/finetune/1/input.wav" type="audio/wav"></audio></th>
         <th><audio controls><source src="static/audio/finetune/1/target.wav" type="audio/wav"></audio></th>
         <th><audio controls><source src="static/audio/finetune/1/pred.wav" type="audio/wav"></audio></th>
@@ -355,11 +369,13 @@ Piano audio-to-score transcription (A2S) is an important yet underexplored task 
 
 <table>
     <tr>
+        <th>No.</th>
         <th>Input Audio</th>
         <th>Target</th>
         <th>Prediction</th>
     </tr>
     <tr>
+        <th>8</th>
         <th><audio controls><source src="static/audio/finetune/2/input.wav" type="audio/wav"></audio></th>
         <th><audio controls><source src="static/audio/finetune/2/target.wav" type="audio/wav"></audio></th>
         <th><audio controls><source src="static/audio/finetune/2/pred.wav" type="audio/wav"></audio></th>
@@ -390,11 +406,13 @@ Piano audio-to-score transcription (A2S) is an important yet underexplored task 
 
 <table>
     <tr>
+        <th>No.</th>
         <th>Input Audio</th>
         <th>Target</th>
         <th>Prediction</th>
     </tr>
     <tr>
+        <th>9</th>
         <th><audio controls><source src="static/audio/finetune/3/input.wav" type="audio/wav"></audio></th>
         <th><audio controls><source src="static/audio/finetune/3/target.wav" type="audio/wav"></audio></th>
         <th><audio controls><source src="static/audio/finetune/3/pred.wav" type="audio/wav"></audio></th>
@@ -425,11 +443,13 @@ Piano audio-to-score transcription (A2S) is an important yet underexplored task 
 
 <table>
     <tr>
+        <th>No.</th>
         <th>Input Audio</th>
         <th>Target</th>
         <th>Prediction</th>
     </tr>
     <tr>
+        <th>10</th>
         <th><audio controls><source src="static/audio/finetune/4/input.wav" type="audio/wav"></audio></th>
         <th><audio controls><source src="static/audio/finetune/4/target.wav" type="audio/wav"></audio></th>
         <th><audio controls><source src="static/audio/finetune/4/pred.wav" type="audio/wav"></audio></th>
