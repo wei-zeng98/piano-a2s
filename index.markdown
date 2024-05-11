@@ -279,3 +279,181 @@ Piano audio-to-score transcription (A2S) is an important yet underexplored task 
     color: #999;
     padding: 2px;">Predicted score.</div>
 </center>
+
+
+## Transcription Results from Finetune Stage (Human Performance)
+
+<table>
+    <tr>
+        <th>Input Audio</th>
+        <th>Target</th>
+        <th>Prediction</th>
+    </tr>
+    <tr>
+        <th><audio controls><source src="static/audio/finetune/0/input.wav" type="audio/wav"></audio></th>
+        <th><audio controls><source src="static/audio/finetune/0/target.wav" type="audio/wav"></audio></th>
+        <th><audio controls><source src="static/audio/finetune/0/pred.wav" type="audio/wav"></audio></th>
+    </tr>
+<table>
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="static/img/finetune/0/target.svg">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Target score.</div>
+</center>
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="static/img/finetune/0/pred.svg">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Predicted score.</div>
+</center>
+
+<table>
+    <tr>
+        <th>Input Audio</th>
+        <th>Target</th>
+        <th>Prediction</th>
+    </tr>
+    <tr>
+        <th><audio controls><source src="static/audio/finetune/1/input.wav" type="audio/wav"></audio></th>
+        <th><audio controls><source src="static/audio/finetune/1/target.wav" type="audio/wav"></audio></th>
+        <th><audio controls><source src="static/audio/finetune/1/pred.wav" type="audio/wav"></audio></th>
+    </tr>
+<table>
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="static/img/finetune/1/target.svg">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Target score.</div>
+</center>
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="static/img/finetune/1/pred.svg">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Predicted score.</div>
+</center>
+
+<table>
+    <tr>
+        <th>Input Audio</th>
+        <th>Target</th>
+        <th>Prediction</th>
+    </tr>
+    <tr>
+        <th><audio controls><source src="static/audio/finetune/2/input.wav" type="audio/wav"></audio></th>
+        <th><audio controls><source src="static/audio/finetune/2/target.wav" type="audio/wav"></audio></th>
+        <th><audio controls><source src="static/audio/finetune/2/pred.wav" type="audio/wav"></audio></th>
+    </tr>
+<table>
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="static/img/finetune/2/target.svg">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Target score.</div>
+</center>
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="static/img/finetune/2/pred.svg">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Predicted score.</div>
+</center>
+
+<table>
+    <tr>
+        <th>Input Audio</th>
+        <th>Target</th>
+        <th>Prediction</th>
+    </tr>
+    <tr>
+        <th><audio controls><source src="static/audio/finetune/3/input.wav" type="audio/wav"></audio></th>
+        <th><audio controls><source src="static/audio/finetune/3/target.wav" type="audio/wav"></audio></th>
+        <th><audio controls><source src="static/audio/finetune/3/pred.wav" type="audio/wav"></audio></th>
+    </tr>
+<table>
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="static/img/finetune/3/target.svg">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Target score.</div>
+</center>
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="static/img/finetune/3/pred.svg">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Predicted score.</div>
+</center>
+
+<table>
+    <tr>
+        <th>Input Audio</th>
+        <th>Target</th>
+        <th>Prediction</th>
+    </tr>
+    <tr>
+        <th><audio controls><source src="static/audio/finetune/4/input.wav" type="audio/wav"></audio></th>
+        <th><audio controls><source src="static/audio/finetune/4/target.wav" type="audio/wav"></audio></th>
+        <th><audio controls><source src="static/audio/finetune/4/pred.wav" type="audio/wav"></audio></th>
+    </tr>
+<table>
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="static/img/finetune/4/target.svg">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Target score.</div>
+</center>
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="static/img/finetune/4/pred.svg">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Predicted score.</div>
+</center>
