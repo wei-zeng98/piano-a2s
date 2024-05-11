@@ -101,6 +101,7 @@ Piano audio-to-score transcription (A2S) is an important yet underexplored task 
 <table>
 
 ## Transcription Results from Pretrain Stage (Synthesized Audio)
+
 <table>
     <tr>
         <th>Input Audio</th>
