@@ -99,3 +99,39 @@ Piano audio-to-score transcription (A2S) is an important yet underexplored task 
         <th><audio controls><source src="static/audio/audio_sample/human.wav" type="audio/wav"></audio></th>
     </tr>
 <table>
+
+## Transcription Results from Pretrain Stage (Synthesized Audio)
+<table>
+    <tr>
+        <th>Input Audio</th>
+        <th>Target</th>
+        <th>Prediction</th>
+    </tr>
+    <tr>
+        <th><audio controls><source src="static/audio/pretrain/0/input.wav" type="audio/wav"></audio></th>
+        <th><audio controls><source src="static/audio/pretrain/0/target.wav" type="audio/wav"></audio></th>
+        <th><audio controls><source src="static/audio/pretrain/0/pred.wav" type="audio/wav"></audio></th>
+    </tr>
+<table>
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="static/img/pretrain/0/target.svg">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Target score.</div>
+</center>
+
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="static/img/pretrain/0/pred.svg">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Predicted score.</div>
+</center>
