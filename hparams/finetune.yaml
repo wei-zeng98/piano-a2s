@@ -7,6 +7,7 @@ midi_syn: epr # ['epr', 'score']
 version: !ref finetune.<midi_syn>
 asap_folder: !PLACEHOLDER # Path to the asap_folder
 workspace: !PLACEHOLDER # Path to the workspace
+mv2h_bin: !PLACEHOLDER # Path to the mv2h binary folder
 output_folder: !ref <workspace>/<seed>/<version>
 pretrained_output_folder: !ref <workspace>/<seed>/pretrain.<midi_syn>
 feature_folder: !ref <workspace>/feature.asap

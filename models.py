@@ -120,12 +120,12 @@ class HierarchicalDecoder(nn.Module):
                           batch_first=True)
         
         # Output linear layers
-        self.time_sig_out = nn.Sequential(nn.Linear(hidden_size*4 + time_sig_emb_size, hidden_size*4),
+        self.time_sig_out = nn.Sequential(nn.Linear(hidden_size*4, hidden_size*4),
                                           nn.ReLU(),
                                           nn.Linear(hidden_size*4, hidden_size*2),
                                           nn.ReLU(),
                                           nn.Linear(hidden_size*2, num_time_sig))
-        self.key_out = nn.Sequential(nn.Linear(hidden_size*4 + key_emb_size, hidden_size*4),
+        self.key_out = nn.Sequential(nn.Linear(hidden_size*4, hidden_size*4),
                                      nn.ReLU(),
                                      nn.Linear(hidden_size*4, hidden_size*2),
                                      nn.ReLU(),
@@ -279,12 +279,10 @@ class HierarchicalDecoder(nn.Module):
             
             # Decode time signature and key
             time_input = torch.cat([bar_summary.squeeze(1), 
-                                    context.squeeze(1), 
-                                    time_sig_token.squeeze(1)], dim=1) # (B, hidden_size*4 + time_sig_emb_size)
+                                    context.squeeze(1)], dim=1) # (B, hidden_size*4)
             time_sig_outs[:, bar_index, :] = F.log_softmax(self.time_sig_out(time_input), dim=-1) # (B, num_time_sig)
             key_input = torch.cat([bar_summary.squeeze(1), 
-                                   context.squeeze(1), 
-                                   key_token.squeeze(1)], dim=1) # (B, hidden_size*4 + key_emb_size)
+                                   context.squeeze(1)], dim=1) # (B, hidden_size*4)
             key_outs[:, bar_index, :] = F.log_softmax(self.key_out(key_input), dim=-1) # (B, num_keys)
             
             # Update token

@@ -2,10 +2,10 @@
 
 ### [Paper]() | [Demo](https://wei-zeng98.github.io/piano-a2s/) | [Pre-trained Models](https://drive.google.com/drive/folders/10Cmfzp5aCDnSMyMG_qMtDWjtFL8cjOqG?usp=sharing)
 <div align=center>
-<img src="images/model_architecture.svg" width="750px">
+<img src="images/model_architecture.png" width="750px">
 </div>
 <div align=center>
-<img src="images/training_scheme.svg" width="750px">
+<img src="images/training_scheme.png" width="750px">
 </div>
 
 ## Installation

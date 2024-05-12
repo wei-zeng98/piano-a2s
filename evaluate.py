@@ -4,42 +4,13 @@ import numpy as np
 from utilities import load, save, mkdirs
 from data_processing.humdrum import get_xml_from_target
 from hyperpyyaml import load_hyperpyyaml
-from pyMV2H.converter.midi_converter import MidiConverter as Converter
-from pyMV2H.utils.align_files import align_files
-from pyMV2H.utils.music import Music
-import multiprocessing
+from subprocess import check_output
+import subprocess
 
-def get_mv2h(mv2h_dict, target_align_file, pred_align_file):
-    _, mv2h = align_files(Music.from_file(target_align_file),
-                          Music.from_file(pred_align_file))
-    mv2h_dict['Multi-pitch'] = mv2h.multi_pitch
-    mv2h_dict['Voice'] = mv2h.voice
-    mv2h_dict['Meter'] = mv2h.meter
-    mv2h_dict['Value'] = mv2h.note_value
-    mv2h_dict['Harmony'] = mv2h.harmony
-    mv2h_dict['MV2H'] = mv2h.mv2h
-
-def get_mv2h_with_timeout(timeout, target_align_file, pred_align_file):
-    with multiprocessing.Manager() as manager:
-        return_dict = manager.dict()
-        p = multiprocessing.Process(target=get_mv2h, 
-                                    args=(return_dict, 
-                                          target_align_file, 
-                                          pred_align_file))
-        p.start()
-        p.join(timeout)
-        
-        if p.is_alive():
-            print("Timeout")
-            p.terminate()
-            p.join()
-
-        return dict(return_dict)
-
-def get_mv2h_from_test(output_folder, split):
+def get_mv2h_from_test(output_folder, split, mv2h_bin):
     results_dir = f'{output_folder}/results'
     mkdirs(f'{results_dir}/mv2h')
-    for dir in ['scores', 'midi', 'align']:
+    for dir in ['scores', 'midi']:
         for sub_dir in ['pred', 'target']:
             mkdirs(f'{results_dir}/{dir}/{sub_dir}')
     
@@ -50,8 +21,6 @@ def get_mv2h_from_test(output_folder, split):
         target_xml_path = f'{results_dir}/scores/target/{id}_target.xml'
         pred_midi_path = f'{results_dir}/midi/pred/{id}_pred.mid'
         target_midi_path = f'{results_dir}/midi/target/{id}_target.mid'
-        pred_align_path = f'{results_dir}/align/pred/{id}_pred.txt'
-        target_align_path = f'{results_dir}/align/target/{id}_target.txt'
         mv2h_path = f'{results_dir}/mv2h/{id}_mv2h.json'
         if os.path.exists(mv2h_path): continue
         result = load(os.path.join(f'{results_dir}/{split}', result))
@@ -67,27 +36,26 @@ def get_mv2h_from_test(output_folder, split):
         except Exception as e:
             errors.append(id)
             continue
-        
-        # Convert midi to txt
-        converter = Converter(file=target_midi_path, output=target_align_path)
-        converter.convert_file()
-        converter = Converter(file=pred_midi_path, output=pred_align_path)
-        converter.convert_file()
-
-        # Align and get mv2h
         try:
-            mv2h_dict = \
-                get_mv2h_with_timeout(15, 
-                                      target_align_path, 
-                                      pred_align_path)
-            if mv2h_dict is None or len(mv2h_dict) == 0:
-                errors.append(id)
-                continue
-            save(mv2h_dict, mv2h_path)
-        except Exception as e:
-            errors.append(id)
+            output = check_output(['sh', 
+                                   'evaluate_midi_mv2h.sh', 
+                                   target_midi_path, 
+                                   pred_midi_path, 
+                                   mv2h_bin], timeout=10)
+        except ValueError as e:
+            print('Failed to evaluate pair: \ntarget midi: {}\noutput midi: {}'.format(target_midi_path,
+                                                                            pred_midi_path))
+        except subprocess.TimeoutExpired as e:
+            print('Timeout: \ntarget midi: {}\noutput midi: {}'.format(target_midi_path,
+                                                                            pred_midi_path))
             continue
-
+        
+        result_list = output.decode('utf-8').splitlines()[-6:]
+        result = dict([tuple(item.split(': ')) for item in result_list])
+        for key, value in result.items():
+            result[key] = float(value)
+        save(result, mv2h_path)
+    
     error_path = f'{results_dir}/errors.txt'
     with open(error_path, 'w') as f:
         for error in errors:
@@ -204,10 +172,11 @@ if __name__ == '__main__':
     hparams = load_hyperpyyaml('hparams/finetune.yaml')
     pretrain_output_folder = hparams['pretrained_output_folder']
     finetune_output_folder = hparams['output_folder']
+    mv2h_bin = hparams['mv2h_bin']
 
     # Get mv2h for test set
-    get_mv2h_from_test(pretrain_output_folder, 'test')
-    get_mv2h_from_test(finetune_output_folder, 'test')
+    get_mv2h_from_test(pretrain_output_folder, 'test', mv2h_bin)
+    get_mv2h_from_test(finetune_output_folder, 'test', mv2h_bin)
     
     # Summarize mv2h
     summarize_syn_mv2h(pretrain_output_folder, composer='all', soundfont='all', test_split='all')
