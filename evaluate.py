@@ -103,7 +103,7 @@ def summarize_syn_mv2h(results_dir, composer='all', soundfont='all', test_split=
     print((mv2h_metrics['Multi-pitch'] + mv2h_metrics['Voice'] + mv2h_metrics['Value'] + mv2h_metrics['Harmony']) / 4)
 
 def summarize_asap_mv2h(results_dir):
-    mv2h_folder = f'{results_dir}/results.pretrain/mv2h'
+    mv2h_folder = f'{results_dir}/results/mv2h'
     keys = ['Multi-pitch', 'Voice', 'Meter', 'Value', 'Harmony', 'MV2H']
     mv2h_metrics = {}
     for key in keys:
