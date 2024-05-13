@@ -59,9 +59,9 @@ mozart#sonata11-1d
 mozart#sonata11-1e
 mozart#sonata12-1
 mozart#sonata12-3
+mozart#sonata13-1
 scarlatti#L002K384
 scarlatti#L101K156
 scarlatti#L346K408
 scarlatti#L351K225
 scarlatti#L400K360
-scarlatti#L523K205

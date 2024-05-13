@@ -56,7 +56,6 @@ mozart#sonata02-3
 mozart#sonata03-1
 mozart#sonata06-3i
 mozart#sonata11-3
-mozart#sonata13-1
 mozart#sonata17-2
 scarlatti#L053K075
 scarlatti#L054K200
@@ -65,3 +64,4 @@ scarlatti#L198K296
 scarlatti#L302K372
 scarlatti#L304K470
 scarlatti#L343K434
+scarlatti#L523K205
