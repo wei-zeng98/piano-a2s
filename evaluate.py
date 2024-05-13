@@ -54,6 +54,9 @@ def get_mv2h_from_test(output_folder, split, mv2h_bin):
         result = dict([tuple(item.split(': ')) for item in result_list])
         for key, value in result.items():
             result[key] = float(value)
+        if result['MV2H'] == 0:
+            errors.append(id)
+            continue # Errors in reading midi files
         save(result, mv2h_path)
     
     error_path = f'{results_dir}/errors.txt'

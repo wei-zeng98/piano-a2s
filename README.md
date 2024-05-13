@@ -61,6 +61,16 @@ If you do not install Verovio, you need to use the `-r` option to set the resour
 
 This step should already be done in Step 1 as specified by `--recursive`. However, you will probably encounter the error: `xml.etree.ElementTree.Element` object has no attribute `getchildren` when using VirtuosoNet. This is because in Python 3.9, the method `xml.etree.ElementTree.Element.getchildren` does not work anymore. You may refer to [this issue](https://github.com/jdasam/virtuosoNet/issues/14/) to solve the problem.
 
+7. Install MV2H
+
+```bash
+git clone https://github.com/apmcleod/MV2H.git
+cd MV2H
+make
+cd ..
+```
+
+After compiling, add the `bin` folder path to `mv2h_bin` in `hparams/finetune.yaml`.
 ## Preparing Datasets
 
 ### Get MuseSyn
