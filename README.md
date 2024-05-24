@@ -1,6 +1,6 @@
 # End-to-End Real-World Polyphonic Piano Audio-to-Score Transcription with Hierarchical Decoding
 
-### [Paper]() | [Demo](https://wei-zeng98.github.io/piano-a2s/) | [Pre-trained Models](https://drive.google.com/drive/folders/10Cmfzp5aCDnSMyMG_qMtDWjtFL8cjOqG?usp=sharing)
+### [Paper](https://arxiv.org/abs/2405.13527) | [Demo](https://wei-zeng98.github.io/piano-a2s/) | [Pre-trained Models](https://drive.google.com/drive/folders/10Cmfzp5aCDnSMyMG_qMtDWjtFL8cjOqG?usp=sharing)
 <div align=center>
 <img src="images/model_architecture.png" width="750px">
 </div>
@@ -135,3 +135,18 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --nproc_per_node=4 finetune.py hparams/fin
 ```python
 python evaluate.py
 ```
+
+## Limitations
+
+Currently, this model is not yet applicable in real-world scenarios, despite having been tested on real-world audio. This is primarily due to the following reasons:
+- The length of the audio clips is constrained to 5 bars. Cutting an arbitrary recording into 5-bar clips without downbeat information is inflexible.
+- The maximum length of the input audio is limited to 12 seconds due to memory constraints. Audio with durations longer than 12 seconds will exceed the model's capacity.
+- The model sometimes outputs illegal Kern sequences, requiring a post-processing step to handle these sequences.
+
+We plan to address these limitations in our future work and welcome researchers to test the model.
+
+## Contact
+
+[Wei Zeng](https://wei-zeng98.github.io/) (Ph.D. Student at NUS)
+
+w.zeng@u.nus.edu
