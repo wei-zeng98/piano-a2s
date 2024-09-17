@@ -1,4 +1,3 @@
-
 import os
 import sys
 sys.path.append('.')
@@ -343,7 +342,7 @@ def render_one_midi(fs, dynamic_compression, midi_path, wav_path):
             else:
                 dynamic_compression.ratio += 2
                 if dynamic_compression.ratio > 34: break
-            loudness_normalized_audio = numpy.array(loudness_normalized_audio)
+            loudness_normalized_audio = np.array(loudness_normalized_audio)
             data_copy = dynamic_compression(loudness_normalized_audio, rate)
             data_copy = pyln.normalize.peak(data_copy, -1.0)
             attempt += 1
@@ -367,7 +366,7 @@ def render_one_midi(fs, dynamic_compression, midi_path, wav_path):
             else:
                 dynamic_compression.ratio += 1.5
                 if dynamic_compression.ratio > 15: break
-            loudness_normalized_audio = numpy.array(data_copy)
+            loudness_normalized_audio = np.array(data_copy)
             data_copy = dynamic_compression(loudness_normalized_audio, rate)
             attempt += 1
 
@@ -537,13 +536,18 @@ def clean_files(versions, feature_folder):
                     os.remove(midi_path)
                     deleted += 1
                     continue
+
+                flag_to_delete = False
                 for instrument in midi_data.instruments:
                     for note in instrument.notes:
                         if note.pitch < 21 or note.pitch > 108:
                             os.remove(target_path)
                             os.remove(midi_path)
                             deleted += 1
+                            flag_to_delete = True
                             break
+                if flag_to_delete:
+                    continue
                 
                 # Check if key or time signature is out of range
                 target = load(target_path)
